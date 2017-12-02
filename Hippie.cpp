@@ -146,10 +146,20 @@ void Hippie::setRestState(bool state){
 //---------------------------------------------------------
 void Hippie::jump(float steps, int T){
 
-  int up[]={90,90,150,30};
+  int up[]={90,90,165,15};
   _moveServos(T,up);
   int down[]={90,90,90,90};
   _moveServos(T,down);
+}
+
+//---------------------------------------------------------
+//-- Hippie Test Positions (bring feets and hips in certain position)
+//---------------------------------------------------------
+void Hippie::test_pos(){
+	
+	int left_feet_up[4]={90,0,90,30};								//watch from view of robot: [3] = left leg ... by + value: turn right
+	_moveServos(1000,left_feet_up);									//							[4] = right leg ... by + value: right side up
+	
 }
 
 
@@ -169,9 +179,11 @@ void Hippie::walk(float steps, int T, int dir){
   //--      -90 : Walk forward
   //--       90 : Walk backward
   //-- Feet servos also have the same offset (for tiptoe a little bit)
-  int A[4]= {30, 30, 20, 20};
-  int O[4] = {0, 0, 4, -4};
+  int A[4]= {30, 30, 40, 40}; //20
+  int O[4] = {0, 0, 4, 30}; //-4
   double phase_diff[4] = {0, 0, DEG2RAD(dir * -90), DEG2RAD(dir * -90)};
+  
+  if ( dir == -1) {   double phase_diff[4] = {0, 0, DEG2RAD(dir * 90), DEG2RAD(dir * 90)}; }
 
   //-- Let's oscillate the servos!
   _execute(A, O, T, phase_diff, steps);  
@@ -193,16 +205,17 @@ void Hippie::turn(float steps, int T, int dir){
   //--   the right leg are bigger than the left. So, the robot describes an 
   //--   left arc
   int A[4]= {30, 30, 20, 20};
-  int O[4] = {0, 0, 4, -4};
+  int O[4] = {0, 0, 4, 30};
   double phase_diff[4] = {0, 0, DEG2RAD(-90), DEG2RAD(-90)}; 
     
   if (dir == LEFT) {  
-    A[0] = 30; //-- Left hip servo
+    A[0] = 50; //-- Left hip servo
     A[1] = 10; //-- Right hip servo
   }
   else {
     A[0] = 10;
-    A[1] = 30;
+    A[1] = 50;
+	A[2] = 40;
   }
     
   //-- Let's oscillate the servos!
@@ -221,7 +234,7 @@ void Hippie::bend (int steps, int T, int dir){
 
   //Parameters of all the movements. Default: Left bend
   int bend1[4]={90, 90, 62, 35}; 
-  int bend2[4]={90, 90, 62, 105};
+  int bend2[4]={90, 90, 62, 105+60};
   int homes[4]={90, 90, 90, 90};
 
   //Time of one bend, constrained in order to avoid movements too fast.
@@ -250,6 +263,121 @@ void Hippie::bend (int steps, int T, int dir){
 
 }
 
+//--------------------------------------------------------
+//-- New Walk Move
+//-- number of steps
+//-- T: Period of one steps
+//-- dir: direction of movement
+//--------------------------------------------------------
+void Hippie::new_walk(int dir, float steps, int T){
+	if(dir==1){
+		// Positions of walking
+		int Pos_A[4] = {90,90,180, 90};
+		int Pos_B[4] = {90,90,180, 180};
+		int Pos_C[4] = {90,45,90, 180};
+		int Pos_D[4] = {45,45,90,90};
+		
+		int Pos_E[4] = {45,45,30,30};
+		int Pos_F[4] = {150,150,30,90};
+		int Pos_G[4] = {150,150,90,90};
+	
+	// run movements
+		for (int i=0;i<steps;i++)
+		{
+			_moveServos(T/2, Pos_A);
+			_moveServos(T/3, Pos_B);
+			//delay(T);
+			_moveServos(T/2, Pos_C);
+			_moveServos(T/2, Pos_D);
+			//delay(T);
+			_moveServos(T/2, Pos_E);
+			_moveServos(T/2, Pos_F);
+			_moveServos(T/2, Pos_G);
+			
+			//delay(T*3);
+		}
+	
+	}
+	
+	//Backwards
+	if (dir == 2){
+		int Pos_1[4] = {90,90,180, 90};
+		int Pos_2[4] = {90,90,180, 180};
+		int Pos_3[4] = {90,145,90, 180};
+		int Pos_4[4] = {145,145,90,90};
+		
+		int Pos_5[4] = {145,145,30,30};
+		int Pos_6[4] = {45,45,30,90};
+		int Pos_7[4] = {45,45,90,90};	
+		
+		// run movements
+		for (int i=0;i<steps;i++)
+		{
+			_moveServos(T/2, Pos_1);
+			_moveServos(T/3, Pos_2);
+			//delay(T);
+			_moveServos(T/2, Pos_3);
+			_moveServos(T/2, Pos_4);
+			//delay(T);
+			_moveServos(T/2, Pos_5);
+			_moveServos(T/2, Pos_6);
+			_moveServos(T/2, Pos_7);
+			
+			//delay(T*3);
+		}
+		
+	}		
+}
+
+//--------------------------------------------------------
+//-- New Turn Move
+//-- number of steps
+//-- T: Period of one steps
+//-- dir: direction of movement
+//--------------------------------------------------------
+void Hippie::new_turn(int dir, float steps, int T){
+	//LEFT
+	if (dir==1) {
+	// Positions of turning
+		int Pos_A[4] = {90,90,90, 30};
+		int Pos_B[4] = {90,90,30, 30};
+		int Pos_C[4] = {0,90,30,90};
+		int Pos_D[4] = {0,90,90,90};
+		int Pos_E[4] = {90,90,90,90};
+		
+		// run movements
+		for (int i=0;i<steps;i++)
+		{
+			_moveServos(T/2, Pos_A);
+			_moveServos(T/3, Pos_B);
+			//delay(T);
+			_moveServos(T/2, Pos_C);
+			_moveServos(T/2, Pos_D);
+			_moveServos(T/2, Pos_E);	
+		}
+	}
+	
+	//RIGHT
+	if (dir==2) {
+	// Positions of turning
+		int Pos_1[4] = {90,90,180, 90};
+		int Pos_2[4] = {90,90,180, 180};
+		int Pos_3[4] = {90,180,90, 180};
+		int Pos_4[4] = {90,180,90,90};
+		int Pos_5[4] = {90,90,90,90};
+		
+		// run movements
+		for (int i=0;i<steps;i++)
+		{
+			_moveServos(T/2, Pos_1);
+			_moveServos(T/3, Pos_2);
+			//delay(T);
+			_moveServos(T/2, Pos_3);
+			_moveServos(T/2, Pos_4);
+			_moveServos(T/2, Pos_5);	
+		}
+	}
+}
 
 //---------------------------------------------------------
 //-- Hippie gait: Shake a leg
@@ -261,12 +389,12 @@ void Hippie::bend (int steps, int T, int dir){
 void Hippie::shakeLeg (int steps,int T,int dir){
 
   //This variable change the amount of shakes
-  int numberLegMoves=2;
+  int numberLegMoves=4;
 
   //Parameters of all the movements. Default: Right leg
-  int shake_leg1[4]={90, 90, 58, 35};   
-  int shake_leg2[4]={90, 90, 58, 120};
-  int shake_leg3[4]={90, 90, 58, 60};
+  int shake_leg1[4]={90, 90, 58, 35-15};   
+  int shake_leg2[4]={90, 90, 58, 120+30};
+  int shake_leg3[4]={90, 90, 58, 60-30};
   int homes[4]={90, 90, 90, 90};
 
   //Changes in the parameters if left leg is chosen
@@ -320,7 +448,7 @@ void Hippie::updown(float steps, int T, int h){
   //-- Initial phase for the right foot is -90, so that it starts
   //--   in one extreme position (not in the middle)
   int A[4]= {0, 0, h, h};
-  int O[4] = {0, 0, h, -h};
+  int O[4] = {0, 0, h, -h+50};
   double phase_diff[4] = {0, 0, DEG2RAD(-90), DEG2RAD(90)};
   
   //-- Let's oscillate the servos!
@@ -340,7 +468,7 @@ void Hippie::swing(float steps, int T, int h){
   //-- Both feets are in phase. The offset is half the amplitude
   //-- It causes the robot to swing from side to side
   int A[4]= {0, 0, h, h};
-  int O[4] = {0, 0, h/2, -h/2};
+  int O[4] = {0, 0, h/2-20, -h/2+50-20};
   double phase_diff[4] = {0, 0, DEG2RAD(0), DEG2RAD(0)};
   
   //-- Let's oscillate the servos!
@@ -360,7 +488,7 @@ void Hippie::tiptoeSwing(float steps, int T, int h){
   //-- Both feets are in phase. The offset is not half the amplitude in order to tiptoe
   //-- It causes the robot to swing from side to side
   int A[4]= {0, 0, h, h};
-  int O[4] = {0, 0, h, -h};
+  int O[4] = {0, 0, h-20, -h+50};
   double phase_diff[4] = {0, 0, 0, 0};
   
   //-- Let's oscillate the servos!
@@ -407,7 +535,7 @@ void Hippie::ascendingTurn(float steps, int T, int h){
   //-- h is constrained to avoid hit the feets
   h=min(13,h);
   int A[4]= {h, h, h, h};
-  int O[4] = {0, 0, h+4, -h+4};
+  int O[4] = {0, 0, h+4, -h+40};
   double phase_diff[4] = {DEG2RAD(-90), DEG2RAD(90), DEG2RAD(-90), DEG2RAD(90)};
   
   //-- Let's oscillate the servos!
@@ -436,7 +564,7 @@ void Hippie::moonwalker(float steps, int T, int h, int dir){
   //-   offset so that the robot tiptoe lightly
  
   int A[4]= {0, 0, h, h};
-  int O[4] = {0, 0, h/2+2, -h/2 -2};
+  int O[4] = {0, 0, h/2+2, -h/2 -2+60};
   int phi = -dir * 90;
   double phase_diff[4] = {0, 0, DEG2RAD(phi), DEG2RAD(-60 * dir + phi)};
   
@@ -456,7 +584,7 @@ void Hippie::moonwalker(float steps, int T, int h, int dir){
 void Hippie::crusaito(float steps, int T, int h, int dir){
 
   int A[4]= {25, 25, h, h};
-  int O[4] = {0, 0, h/2+ 4, -h/2 - 4};
+  int O[4] = {0, 0, h/2+ 4, -h/2 - 4+30};
   double phase_diff[4] = {90, 90, DEG2RAD(0), DEG2RAD(-60 * dir)};
   
   //-- Let's oscillate the servos!
@@ -474,8 +602,8 @@ void Hippie::crusaito(float steps, int T, int h, int dir){
 //---------------------------------------------------------
 void Hippie::flapping(float steps, int T, int h, int dir){
 
-  int A[4]= {12, 12, h, h};
-  int O[4] = {0, 0, h - 10, -h + 10};
+  int A[4]= {12+10, 12+10, h, h};
+  int O[4] = {0, 0, h - 10, -h + 10+60};
   double phase_diff[4] = {DEG2RAD(0), DEG2RAD(180), DEG2RAD(-90 * dir), DEG2RAD(90 * dir)};
   
   //-- Let's oscillate the servos!

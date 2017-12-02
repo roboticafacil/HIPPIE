@@ -45,24 +45,27 @@ class Hippie
     void setRestState(bool state);
     
     //-- Predetermined Motion Functions
-    void jump(float steps=1, int T = 2000);
+    void jump(float steps=1, int T = 600);
 
     void walk(float steps=4, int T=1000, int dir = FORWARD);
-    void turn(float steps=4, int T=2000, int dir = LEFT);
+    void turn(float steps=4, int T=1000, int dir = LEFT);
     void bend (int steps=1, int T=1400, int dir=LEFT);
     void shakeLeg (int steps=1, int T = 2000, int dir=RIGHT);
 
-    void updown(float steps=1, int T=1000, int h = 20);
-    void swing(float steps=1, int T=1000, int h=20);
-    void tiptoeSwing(float steps=1, int T=900, int h=20);
-    void jitter(float steps=1, int T=500, int h=20);
-    void ascendingTurn(float steps=1, int T=900, int h=20);
+    void updown(float steps=1, int T=1000, int h = 40);
+    void swing(float steps=1, int T=1000, int h=40);
+    void tiptoeSwing(float steps=1, int T=900, int h=40);
+    void jitter(float steps=1, int T=500, int h=50);
+    void ascendingTurn(float steps=1, int T=900, int h=50);
 
-    void moonwalker(float steps=1, int T=900, int h=20, int dir=LEFT);
+    void moonwalker(float steps=1, int T=900, int h=50, int dir=LEFT);
     void crusaito(float steps=1, int T=900, int h=20, int dir=FORWARD);
-    void flapping(float steps=1, int T=1000, int h=20, int dir=FORWARD);
+    void flapping(float steps=1, int T=1000, int h=50, int dir=FORWARD);
+	
+	void test_pos();
 
-    
+    void new_walk(int dir = FORWARD, float steps =4, int T=750);
+	void new_turn(int dir = LEFT, float steps =2, int T=1000);
 
  
   private:
