@@ -1,0 +1,56 @@
+#######################################
+# Syntax Coloring Map For HIPPIE
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+HIPPIE KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# Hippie initialisation
+init KEYWORD2
+
+# Attach & detach functions
+attachServos KEYWORD2
+detachServos KEYWORD2
+
+# HOME = Hippie at rest position
+home KEYWORD2
+getRestState KEYWORD2
+setRestState KEYWORD2
+
+# Motion Functions
+
+jump KEYWORD2
+walk KEYWORD2
+turn KEYWORD2
+bend KEYWORD2
+shakeLeg KEYWORD2
+
+updown KEYWORD2
+swing KEYWORD2
+tiptoeSwing KEYWORD2
+jitter KEYWORD2
+ascendingTurn KEYWORD2
+
+moonwalker KEYWORD2
+crusaito KEYWORD2
+flapping KEYWORD2
+
+test_pos KEYWORD2
+
+new_walk KEYWORD2
+new_turn KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
