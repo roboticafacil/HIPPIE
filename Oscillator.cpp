@@ -5,31 +5,31 @@
 //-- (c) Juan Gonzalez-Gomez (Obijuan), Dec 2011
 //-- GPL license
 //--------------------------------------------------------------
-#if defined(ARDUINO) && ARDUINO >= 100
-  #include "Arduino.h"
-#else
-  #include "WProgram.h"
-  #include <pins_arduino.h>
-#endif
+
+#include "Arduino.h"
 #include "Oscillator.h"
-#include <ESP32_Servo.h>
+#if defined(ESP32)
+  #include <ESP32_Servo.h>
+#else
+  #include <Servo.h>
+#endif
 
 //-- This function returns true if another sample
 //-- should be taken (i.e. the TS time has passed since
 //-- the last sample was taken
 bool Oscillator::next_sample()
 {
-  
+
   //-- Read current time
   _currentMillis = millis();
- 
+
   //-- Check if the timeout has passed
   if(_currentMillis - _previousMillis > _TS) {
-    _previousMillis = _currentMillis;   
+    _previousMillis = _currentMillis;
 
     return true;
   }
-  
+
   return false;
 }
 
@@ -39,9 +39,6 @@ bool Oscillator::next_sample()
 void Oscillator::attach(int pin, bool rev)
 {
   //-- If the oscillator is detached, attach it.
-	//Serial.println("PANIIIIIIIIIIIIIIIIIC");
-//	Serial.println(!_servo.attached());
-  //if(!_servo.attached()){
 
     //-- Attach the servo and move it to the home position
       _servo.attach(pin);
@@ -64,8 +61,7 @@ void Oscillator::attach(int pin, bool rev)
 
       //-- Reverse mode
       _rev = rev;
-  //}
-      
+
 }
 
 //-- Detach an oscillator from his servo
@@ -84,7 +80,7 @@ void Oscillator::SetT(unsigned int T)
 {
   //-- Assign the new period
   _T=T;
-  
+
   //-- Recalculate the parameters
   __N = _T/_TS;
   _inc = 2*M_PI/__N;
@@ -107,10 +103,10 @@ void Oscillator::SetPosition(int position)
 /*******************************************************************/
 void Oscillator::refresh()
 {
-  
+
   //-- Only When TS milliseconds have passed, the new sample is obtained
   if (next_sample()) {
-  
+
       //-- If the oscillator is not stopped, calculate the servo position
       if (!_stop) {
         //-- Sample the sine function and set the servo pos

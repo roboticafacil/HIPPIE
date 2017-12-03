@@ -8,7 +8,11 @@
 #ifndef Oscillator_h
 #define Oscillator_h
 
-#include <ESP32_Servo.h>
+#if defined(ESP32)
+  #include <ESP32_Servo.h>
+#else
+  #include <Servo.h>
+#endif
 
 //-- Macro for converting from degrees to radians
 #ifndef DEG2RAD
@@ -21,32 +25,32 @@ class Oscillator
     Oscillator(int trim=0) {_trim=trim;};
     void attach(int pin, bool rev =false);
     void detach();
-    
+
     void SetA(unsigned int A) {_A=A;};
     void SetO(unsigned int O) {_O=O;};
     void SetPh(double Ph) {_phase0=Ph;};
     void SetT(unsigned int T);
     void SetTrim(int trim){_trim=trim;};
     int getTrim() {return _trim;};
-    void SetPosition(int position); 
+    void SetPosition(int position);
     void Stop() {_stop=true;};
     void Play() {_stop=false;};
     void Reset() {_phase=0;};
     void refresh();
-    
+
   private:
-    bool next_sample();  
-    
+    bool next_sample();
+
   private:
     //-- Servo that is attached to the oscillator
     Servo _servo;
-    
+
     //-- Oscillators parameters
     unsigned int _A;  //-- Amplitude (degrees)
     unsigned int _O;  //-- Offset (degrees)
     unsigned int _T;  //-- Period (miliseconds)
     double _phase0;   //-- Phase (radians)
-    
+
     //-- Internal variables
     int _pos;         //-- Current servo pos
     int _trim;        //-- Calibration offset
@@ -54,10 +58,10 @@ class Oscillator
     double _inc;      //-- Increment of phase
     double __N;        //-- Number of samples
     unsigned int _TS; //-- sampling period (ms)
-    
-    long _previousMillis; 
+
+    long _previousMillis;
     long _currentMillis;
-    
+
     //-- Oscillation mode. If true, the servo is stopped
     bool _stop;
 

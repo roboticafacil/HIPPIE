@@ -1,13 +1,7 @@
 #ifndef Hippie_h
 #define Hippie_h
 
-#include <ESP32_Servo.h>
 #include <Oscillator.h>
-
-#include "Hippie_mouths.h"
-#include "Hippie_sounds.h"
-#include "Hippie_gestures.h"
-
 
 //-- Constants
 #define FORWARD     1
@@ -17,11 +11,6 @@
 #define SMALL       5
 #define MEDIUM      15
 #define BIG         30
-
-#define PIN_Buzzer  10
-#define PIN_Trigger 8
-#define PIN_Echo    9
-#define PIN_NoiseSensor A6
 
 
 class Hippie
@@ -43,7 +32,7 @@ class Hippie
     void home();
     bool getRestState();
     void setRestState(bool state);
-    
+
     //-- Predetermined Motion Functions
     void jump(float steps=1, int T = 600);
 
@@ -61,15 +50,15 @@ class Hippie
     void moonwalker(float steps=1, int T=900, int h=50, int dir=LEFT);
     void crusaito(float steps=1, int T=900, int h=20, int dir=FORWARD);
     void flapping(float steps=1, int T=1000, int h=50, int dir=FORWARD);
-	
-	void test_pos();
+
+	  void test_pos();
 
     void new_walk(int dir = FORWARD, float steps =4, int T=750);
-	void new_turn(int dir = LEFT, float steps =2, int T=1000);
+	  void new_turn(int dir = LEFT, float steps =2, int T=1000);
 
- 
+
   private:
-    
+
     Oscillator servo[4];
 
     int servo_pins[4];
@@ -77,7 +66,7 @@ class Hippie
     int servo_position[4];
 
     int pinBuzzer;
-    
+
     unsigned long final_time;
     unsigned long partial_time;
     float increment[4];
@@ -89,5 +78,3 @@ class Hippie
 };
 
 #endif
-
-
