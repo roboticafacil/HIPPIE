@@ -17,14 +17,14 @@ class Hippie
 {
   public:
 
-    //-- Hippie initialization
+    //-- Hippie initialisation
     void init(int YL, int YR, int RL, int RR, int Buzzer=PIN_Buzzer);
 
     //-- Attach & detach functions
     void attachServos();
     void detachServos();
 
-    //-- Predetermined Motion Functions
+    //-- General Purpose Motion Functions
     void _moveServos(int time, int  servo_target[]);
     void oscillateServos(int A[4], int O[4], int T, double phase_diff[4], float cycle);
 
@@ -33,7 +33,7 @@ class Hippie
     bool getRestState();
     void setRestState(bool state);
 
-    //-- Predetermined Motion Functions
+    //-- Motion Functions
     void jump(float steps=1, int T = 600);
 
     void walk(float steps=4, int T=1000, int dir = FORWARD);
