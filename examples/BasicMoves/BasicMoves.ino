@@ -1,26 +1,10 @@
-// This examples shows the Hippie Library used toghether with ESPUI Library by Lukas Bachschwelll on the ESP32
+// This examples shows the basic moves of the Hippie Library
 #include <Hippie.h>
 #include <Oscillator.h>
 
 const char* ssid = "Hippie";
 
 Hippie hippie;
-
-boolean walk_forward = false;
-boolean walk_backward = false;
-boolean jump = false;
-boolean turn_left = false;
-boolean turn_right = false;
-boolean shake = false;
-boolean swing = false;
-boolean tt_swing = false;
-boolean jitter = false;
-boolean bend = false;
-boolean flap = false;
-boolean moon = false;
-boolean moon_r = false;
-boolean cruise = false;
-boolean test_pos = false;
 
 void setup()
 {
@@ -39,20 +23,54 @@ void setup()
 
 void loop()
 {
-  if (walk_forward) hippie.new_walk();
-  else if (walk_backward) hippie.new_walk(2, 4, 750);
-  else if (turn_left) hippie.new_turn();
-  else if (turn_right) hippie.new_turn(2);
-  else if (shake) hippie.shakeLeg();
-  else if (jump) hippie.jump();
-  else if (swing) hippie.swing();
-  else if (tt_swing) hippie.tiptoeSwing();
-  else if (jitter) hippie.jitter();
-  else if (bend) hippie.bend();
-  else if (flap) hippie.flapping();
-  else if (moon) hippie.moonwalker();
-  else if (moon_r) hippie.moonwalker(1, 900, 50, -1);
-  else if (cruise) hippie.crusaito();
-  else if (test_pos) hippie.test_pos();
-  else hippie.home();
+  hippie.new_walk();
+  hippie.home();
+  delay(500);
+
+  // backward, shit piece
+  hippie.new_walk(2, 4, 750);
+  hippie.home();
+  delay(500);
+
+  // left
+  hippie.new_turn();
+  hippie.home();
+  delay(500);
+
+  // right
+  hippie.new_turn(2);
+  hippie.home();
+  delay(500);
+
+  hippie.shakeLeg(); // TODO: Specify which leg
+  hippie.home();
+  delay(500);
+
+  // left moonwalk
+  hippie.moonwalker();
+  hippie.home();
+  delay(500);
+
+  // right moonwalk
+  hippie.moonwalker(1, 900, 50, -1);
+  hippie.home();
+  delay(500);
+
+  // jump (it is not really a jump)
+  hippie.jump();
+  hippie.home();
+  delay(500);
+
+  /*
+  // Here is some more to experiment with
+
+  hippie.swing();
+  hippie.tiptoeSwing();
+  hippie.jitter();
+  hippie.bend();
+  hippie.flapping();
+  hippie.crusaito();
+
+  hippie.test_pos();
+    */
 }
