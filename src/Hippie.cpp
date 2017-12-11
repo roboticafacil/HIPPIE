@@ -5,7 +5,7 @@
 
 
 
-void Hippie::init(int YL, int YR, int RL, int RR, int Buzzer) {
+void Hippie::init(int YL, int YR, int RL, int RR) {
 
   servo_pins[0] = YL;
   servo_pins[1] = YR;
@@ -17,12 +17,6 @@ void Hippie::init(int YL, int YR, int RL, int RR, int Buzzer) {
 
 
   for (int i = 0; i < 4; i++) servo_position[i] = 90;
-
-
-  //Buzzer & noise sensor pins:
-  pinBuzzer = Buzzer;
-
-  pinMode(Buzzer,OUTPUT);
 }
 
 ///////////////////////////////////////////////////////////////////

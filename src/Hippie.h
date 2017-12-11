@@ -18,7 +18,7 @@ class Hippie
   public:
 
     //-- Hippie initialisation
-    void init(int YL, int YR, int RL, int RR, int Buzzer=PIN_Buzzer);
+    void init(int YL, int YR, int RL, int RR);
 
     //-- Attach & detach functions
     void attachServos();
@@ -64,8 +64,6 @@ class Hippie
     int servo_pins[4];
     int servo_trim[4];
     int servo_position[4];
-
-    int pinBuzzer;
 
     unsigned long final_time;
     unsigned long partial_time;
