@@ -28,7 +28,7 @@ void loop()
   delay(500);
 
   // backward, shit piece
-  hippie.new_walk(2, 4, 750);
+  hippie.new_walk(4, 750, 2);
   hippie.home();
   delay(500);
 
@@ -38,7 +38,7 @@ void loop()
   delay(500);
 
   // right
-  hippie.new_turn(2);
+  hippie.new_turn(2,1000,2);
   hippie.home();
   delay(500);
 
