@@ -1,0 +1,43 @@
+{
+	"langs": 
+	{
+		"en-GB": 
+		{
+			"keys": 
+			{
+				"LANG_SUBCATEGORY_WALK": "Robot walk",
+				"LANG_MOVEMENT_HIPPIE_ROBOT": "Define robot",
+				"LANG_MOVEMENT_HIPPIE_YR": "  Leg 1",
+				"LANG_MOVEMENT_HIPPIE_YL": "  Leg 2",
+				"LANG_MOVEMENT_HIPPIE_RR": "Ankle 1",
+				"LANG_MOVEMENT_HIPPIE_RL": "Ankle 2",
+				"LANG_HIPPIE_INIT_TOOLTIP": "Defines the servo pins for a quadruped robot.",
+				"LANG_HIPPIE_MOVEMENT_HOME": "Home",
+				"LANG_HIPPIE_MOVEMENT_JUMP": "Jump",
+				"LANG_HIPPIE_MOVEMENT_WALK": "Walk",
+				"LANG_HIPPIE_MOVEMENT_TURN": "Turn",
+				"LANG_HIPPIE_MOVEMENT_BEND": "Bend",
+				"LANG_HIPPIE_MOVEMENT_SHAKE_LEG": "Shake leg",
+				"LANG_HIPPIE_MOVEMENT_UPDOWN": "Up-down",
+				"LANG_HIPPIE_MOVEMENT_SWING": "Swing",
+				"LANG_HIPPIE_MOVEMENT_TIPTOE_SWING": "Tip-toe swing",
+				"LANG_HIPPIE_MOVEMENT_JITTER": "Jitter",
+				"LANG_HIPPIE_MOVEMENT_ASCENDING_TURN": "Ascending Turn",
+				"LANG_HIPPIE_MOVEMENT_MOONWALKER": "Moonwalker",
+				"LANG_HIPPIE_MOVEMENT_CRUSAITO": "Crusaito",
+				"LANG_HIPPIE_MOVEMENT_FLAPPING": "Flapping",
+				"LANG_HIPPIE_MOVEMENT_MOVEMENT": "Movement",
+				"LANG_HIPPIE_MOVEMENT": "Move robot",
+				"LANG_HIPPIE_MOVEMENT_TOOLTIP": "Generates movement primitives for a hip-less robot",
+				"LANG_HIPPIE_MOVEMENT_STEPS": "Steps",
+				"LANG_HIPPIE_MOVEMENT_PERIOD": "Period",
+				"LANG_HIPPIE_MOVEMENT_DIR": "Direction",
+				"LANG_HIPPIE_MOVEMENT_HEIGHT": "Height",
+				"LANG_HIPPIE_MOVEMENT_FORWARD": "Forward",
+				"LANG_HIPPIE_MOVEMENT_BACKWARD": "Backward",
+				"LANG_HIPPIE_MOVEMENT_LEFT": "Left",
+				"LANG_HIPPIE_MOVEMENT_RIGHT": "Right"
+			}
+		}
+	}
+}

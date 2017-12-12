@@ -263,7 +263,7 @@ void Hippie::bend (int steps, int T, int dir){
 //-- T: Period of one steps
 //-- dir: direction of movement
 //--------------------------------------------------------
-void Hippie::new_walk(int dir, float steps, int T){
+void Hippie::new_walk(float steps, int T, int dir){
 	if(dir==1){
 		// Positions of walking
 		int Pos_A[4] = {90,90,180, 90};
@@ -329,7 +329,7 @@ void Hippie::new_walk(int dir, float steps, int T){
 //-- T: Period of one steps
 //-- dir: direction of movement
 //--------------------------------------------------------
-void Hippie::new_turn(int dir, float steps, int T){
+void Hippie::new_turn(float steps, int T, int dir){
 	//LEFT
 	if (dir==1) {
 	// Positions of turning

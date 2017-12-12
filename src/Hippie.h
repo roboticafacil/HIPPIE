@@ -53,8 +53,8 @@ class Hippie
 
 	  void test_pos();
 
-    void new_walk(int dir = FORWARD, float steps =4, int T=750);
-	  void new_turn(int dir = LEFT, float steps =2, int T=1000);
+    void new_walk(float steps =4, int T=750, int dir = FORWARD);
+	void new_turn(float steps =2, int T=1000, int dir = LEFT);
 
 
   private:
