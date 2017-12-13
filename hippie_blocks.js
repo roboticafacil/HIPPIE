@@ -42,9 +42,9 @@ Blockly.Blocks['HIPPIE_init'] = {
 				else if (movement==='1')
 					code+='hippie.jump('+(Blockly.Arduino.valueToCode(this, 'INP1', Blockly.Arduino.ORDER_ATOMIC) || '1')+','+(Blockly.Arduino.valueToCode(this, 'INP2', Blockly.Arduino.ORDER_ATOMIC) || '600')+');\n';
 				else if (movement==='2')
-					code+='hippie.walk('+(Blockly.Arduino.valueToCode(this, 'INP1', Blockly.Arduino.ORDER_ATOMIC) || '4')+','+(Blockly.Arduino.valueToCode(this, 'INP2', Blockly.Arduino.ORDER_ATOMIC) || '1000')+','+this.getFieldValue('FIELD3')+');\n';
+					code+='hippie.new_walk('+(Blockly.Arduino.valueToCode(this, 'INP1', Blockly.Arduino.ORDER_ATOMIC) || '4')+','+(Blockly.Arduino.valueToCode(this, 'INP2', Blockly.Arduino.ORDER_ATOMIC) || '1000')+','+this.getFieldValue('FIELD3')+');\n';
 				else if (movement==='3')
-					code+='hippie.turn('+(Blockly.Arduino.valueToCode(this, 'INP1', Blockly.Arduino.ORDER_ATOMIC) || '4')+','+(Blockly.Arduino.valueToCode(this, 'INP2', Blockly.Arduino.ORDER_ATOMIC) || '1000')+','+this.getFieldValue('FIELD3')+');\n';
+					code+='hippie.new_turn('+(Blockly.Arduino.valueToCode(this, 'INP1', Blockly.Arduino.ORDER_ATOMIC) || '4')+','+(Blockly.Arduino.valueToCode(this, 'INP2', Blockly.Arduino.ORDER_ATOMIC) || '1000')+','+this.getFieldValue('FIELD3')+');\n';
 				else if (movement==='4')
 					code+='hippie.bend('+(Blockly.Arduino.valueToCode(this, 'INP1', Blockly.Arduino.ORDER_ATOMIC) || '1')+','+(Blockly.Arduino.valueToCode(this, 'INP2', Blockly.Arduino.ORDER_ATOMIC) || '1400')+','+this.getFieldValue('FIELD3')+');\n';
 				else if (movement==='5')
@@ -194,7 +194,7 @@ Blockly.Blocks['HIPPIE_init'] = {
 							}catch (e) {}
 						}							
 					}
-					else{
+					else if (( _movement >= 11)&&( _movement <= 13)){
 						if (this._inp1_removed)
 						{
 							this.appendValueInput('INP1').setCheck(Number).appendField(Facilino.locales.getKey('LANG_HIPPIE_MOVEMENT_STEPS'),'TEXT1').setAlign(Blockly.ALIGN_RIGHT);
