@@ -4,14 +4,31 @@
 #include <Oscillator.h>
 
 
-
-void Hippie::init(int YL, int YR, int RL, int RR) {
+void Hippie::init(int YL, int YR, int RL, int RR, int OYL, int OYR, int ORL, int ORR) {
 
   servo_pins[0] = YL;
   servo_pins[1] = YR;
   servo_pins[2] = RL;
   servo_pins[3] = RR;
+  
+  attachServos();
+  isHippieResting=false;
 
+
+  for (int i = 0; i < 4; i++) servo_position[i] = 90;
+}
+
+void Hippie::init_with_trim(int YL, int YR, int RL, int RR, int OYL, int OYR, int ORL, int ORR) {
+
+  servo_pins[0] = YL;
+  servo_pins[1] = YR;
+  servo_pins[2] = RL;
+  servo_pins[3] = RR;
+  servo[0].SetTrim(OYL);
+  servo[1].SetTrim(OYR);
+  servo[2].SetTrim(ORL);
+  servo[3].SetTrim(ORR);
+  
   attachServos();
   isHippieResting=false;
 
@@ -71,6 +88,7 @@ void Hippie::oscillateServos(int A[4], int O[4], int T, double phase_diff[4], fl
     servo[i].SetA(A[i]);
     servo[i].SetT(T);
     servo[i].SetPh(phase_diff[i]);
+	servo[i].SetTrim(servo_trim[i]);
   }
   double ref=millis();
    for (double x=ref; x<=T*cycle+ref; x=millis()){

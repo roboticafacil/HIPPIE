@@ -19,7 +19,7 @@ class Hippie
 
     //-- Hippie initialisation
     void init(int YL, int YR, int RL, int RR);
-
+	void init_with_trim(int YL, int YR, int RL, int RR, int OYL, int OYR, int ORL, int ORR);
     //-- Attach & detach functions
     void attachServos();
     void detachServos();
