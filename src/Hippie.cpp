@@ -4,7 +4,7 @@
 #include <Oscillator.h>
 
 
-void Hippie::init(int YL, int YR, int RL, int RR, int OYL, int OYR, int ORL, int ORR) {
+void Hippie::init(int YL, int YR, int RL, int RR) {
 
   servo_pins[0] = YL;
   servo_pins[1] = YR;
