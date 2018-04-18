@@ -15,8 +15,14 @@ Blockly.Blocks['HIPPIE_init'] = {
 					this.appendValueInput('YL').appendField(new Blockly.FieldImage('img/blocks/hippie_YL.svg', 24*options.zoom, 24*options.zoom)).appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_YL')).appendField(new Blockly.FieldImage('img/blocks/pwm_signal.svg', 24*options.zoom, 24*options.zoom)).setAlign(Blockly.ALIGN_RIGHT);
 					this.appendValueInput('RR').appendField(new Blockly.FieldImage('img/blocks/hippie_RR.svg', 24*options.zoom, 24*options.zoom)).appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_RR')).appendField(new Blockly.FieldImage('img/blocks/pwm_signal.svg', 24*options.zoom, 24*options.zoom)).setAlign(Blockly.ALIGN_RIGHT);
 					this.appendValueInput('RL').appendField(new Blockly.FieldImage('img/blocks/hippie_RL.svg', 24*options.zoom, 24*options.zoom)).appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_RL')).appendField(new Blockly.FieldImage('img/blocks/pwm_signal.svg', 24*options.zoom, 24*options.zoom)).setAlign(Blockly.ALIGN_RIGHT);
+					this.appendDummyInput('').appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_OFFSET'));
+					this.appendDummyInput('').appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_YR')).appendField('+/-').appendField(new Blockly.FieldTextInput('0'), 'OYR').setAlign(Blockly.ALIGN_RIGHT);
+					this.appendDummyInput('').appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_YL')).appendField('+/-').appendField(new Blockly.FieldTextInput('0'), 'OYL').setAlign(Blockly.ALIGN_RIGHT);
+					this.appendDummyInput('').appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_RR')).appendField('+/-').appendField(new Blockly.FieldTextInput('0'), 'ORR').setAlign(Blockly.ALIGN_RIGHT);
+					this.appendDummyInput('').appendField(Facilino.locales.getKey('LANG_MOVEMENT_HIPPIE_RL')).appendField('+/-').appendField(new Blockly.FieldTextInput('0'), 'ORL').setAlign(Blockly.ALIGN_RIGHT);
 					this.setPreviousStatement(true,'code');
 					this.setNextStatement(true,'code');
+					this.setInputsInline(false);
 					this.setColour(Facilino.LANG_COLOUR_MOVEMENT_WALK);
 					this.setTooltip(Facilino.locales.getKey('LANG_HIPPIE_INIT_TOOLTIP'));
 				}
@@ -28,9 +34,29 @@ Blockly.Blocks['HIPPIE_init'] = {
 				var input_YL = Blockly.Arduino.valueToCode(this,'YL',Blockly.Arduino.ORDER_ATOMIC) || '25';
 				var input_RR = Blockly.Arduino.valueToCode(this,'RR',Blockly.Arduino.ORDER_ATOMIC) || '17';
 				var input_RL = Blockly.Arduino.valueToCode(this,'RL',Blockly.Arduino.ORDER_ATOMIC) || '16';
+				var input_OYR = Blockly.Arduino.valueToCode(this,'OYR',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				var input_OYL = Blockly.Arduino.valueToCode(this,'OYL',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				var input_ORR = Blockly.Arduino.valueToCode(this,'ORR',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				var input_ORL = Blockly.Arduino.valueToCode(this,'ORL',Blockly.Arduino.ORDER_ATOMIC) || '0';
 				Blockly.Arduino.definitions_['define_hippie_h'] = '#include <Hippie.h>';
 				Blockly.Arduino.definitions_['declare_var_define_hippie']='Hippie hippie;\n';
-				Blockly.Arduino.setups_['setup_hippie_init'] = 'hippie.init('+input_YR+','+input_YL+','+input_RR+','+input_RL+');\n';
+				Blockly.Arduino.setups_['setup_hippie_init'] = 'hippie.init_with_trim('+input_YR+','+input_YL+','+input_RR+','+input_RL+','+input_OYR+','+input_OYL+','+input_ORR+','+input_ORL+');\n';
+				return code;
+			};
+			
+			Blockly.Arduino['HIPPIE_init'] = function(block) {
+				var code='';
+				var input_YR = Blockly.Arduino.valueToCode(this,'YR',Blockly.Arduino.ORDER_ATOMIC) || '26';
+				var input_YL = Blockly.Arduino.valueToCode(this,'YL',Blockly.Arduino.ORDER_ATOMIC) || '25';
+				var input_RR = Blockly.Arduino.valueToCode(this,'RR',Blockly.Arduino.ORDER_ATOMIC) || '17';
+				var input_RL = Blockly.Arduino.valueToCode(this,'RL',Blockly.Arduino.ORDER_ATOMIC) || '16';
+				var input_OYR = Blockly.Arduino.valueToCode(this,'OYR',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				var input_OYL = Blockly.Arduino.valueToCode(this,'OYL',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				var input_ORR = Blockly.Arduino.valueToCode(this,'ORR',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				var input_ORL = Blockly.Arduino.valueToCode(this,'ORL',Blockly.Arduino.ORDER_ATOMIC) || '0';
+				Blockly.Arduino.definitions_['define_hippie_h'] = '#include <Hippie.h>';
+				Blockly.Arduino.definitions_['declare_var_define_hippie']='Hippie hippie;\n';
+				Blockly.Arduino.setups_['setup_hippie_init'] = 'hippie.init_with_trim('+input_YR+','+input_YL+','+input_RR+','+input_RL+','+input_OYR+','+input_OYL+','+input_ORR+','+input_ORL+');\n';
 				return code;
 			};
 			
